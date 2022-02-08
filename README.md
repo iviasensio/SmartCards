@@ -23,7 +23,7 @@ This extension is a text object with simple and smart look that performs:
 
 
 ### Look
-![alt tag](https://github.com/iviasensio/Guides/blob/master/SmartCards/SmartCards.png)
+![SmartCards](https://user-images.githubusercontent.com/11334576/153006371-4cf965a8-283f-4c4c-bde0-096c6c38a155.png)
 
 *Install in SaaS
 - Download the package and zip the extension folder 'SmartCards' 
@@ -31,6 +31,12 @@ This extension is a text object with simple and smart look that performs:
 - You can also add the example and the theme provided:
 	- Extract the Netflix.qvf demo inside 'Examples' folder and import with the option "Upload app"
 	- Extract the theme, Netflix.zip, it's in the folder 'Themes', go to console-->Themes, import it
+
+- WARNING! By default YouTube resources are not enabled in SaaS, so you may need to apply some Content Security Policy
+ 	- In the Management Console go to Content Security Policy, and add 2 policies:
+ 		. For www.youtube.com allow script-src
+		. For img.youtube.com allow img-src 
+
 
 
 *Install in Server:
@@ -40,6 +46,15 @@ This extension is a text object with simple and smart look that performs:
 	-in the qmc open the menu apps and import Netflix.qvf
 	-in the qmc extensions menu, import the theme Netflix.zip
 
+- WARNING! To make the dynamic images work in a different site (it's designed in SaaS), it needs to identify your 
+  Client Manage environment name. It uses the protocol https and the environment variable ComputerName().
+  Unfortunately not always work.
+  So, if you have issues visualizing the images in the map object:
+  - edit the variable vClientManaged
+  - remove the logic path and type your right environment path, i.e.:
+  	remove ='https://' & ComputerName() & '/appcontent/' & DocumentName() & '/'
+  	and replace by 'https://ivan.servername/appcontent/' & DocumentName() & '/'
+  	 
 
 *Install in Desktop
 - Download the package and copy the folder SmartCards in the path C:\Users\'username'\Documents\Qlik\Sense\Extensions

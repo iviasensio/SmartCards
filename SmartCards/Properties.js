@@ -757,6 +757,16 @@ define(['qlik','./js/util'], function (qlik, utils) {
                                     return data.backgroundimgbool;
                                 }
                             },
+                            backgroundImageUrl: {
+                                type: "string",
+                                ref: "backgroundimageurl",
+                                label: "Image url",
+                                defaultValue : '',
+                                expression : "optional",
+                                show : function(data) {
+                                    return data.backgroundimgsrc == 'url';
+                                }
+                            },   
                             backgroundImageExt: {
                                 type: "string",
                                 ref: "backgroundimageext",

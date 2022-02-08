@@ -8,7 +8,7 @@
 	"email" : "ivan.felipe@qlik.com",
 	"company" : "QlikTech Iberia",
 	"preview": "SmartCards.png",
-	"keywords" : "qlik-sense, visualization-extension, extension, visualization, KPI, Text",
+	"keywords" : "qlik-sense, visualization-extension, extension, visualization, KPI, Text, images",
 	"license" : "GNU",
 	"bundle": {
         "id": "qlik-smart-bundle",

@@ -236,7 +236,8 @@ function (qlik,style,properties) {
             	var auximg = '';
             	switch (layout.backgroundimgsrc){
             		case 'url':
-            			vBackgroundImage = layout.backgroundimageurl.split(' ').join('%20');
+            			vBackgroundImage = layout.backgroundimageurl.replace(/\s/g, "%20");
+            			if(vBackgroundImage.slice(-1) != '/'){vBackgroundImage += '/';}
             		break;
 
             		case 'lib':
