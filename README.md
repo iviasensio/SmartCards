@@ -23,7 +23,7 @@ This extension is a text object with simple and smart look that performs:
 
 
 ### Look
-![alt tag](https://github.com/iviasensio/Guides/blob/master/SmartCards/SmartCards.png)
+![SmartCards](https://user-images.githubusercontent.com/11334576/153006371-4cf965a8-283f-4c4c-bde0-096c6c38a155.png)
 
 *Install in SaaS
 - Download the package and zip the extension folder 'SmartCards' 
