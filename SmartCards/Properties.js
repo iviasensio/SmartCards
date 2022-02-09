@@ -204,17 +204,7 @@ define(['qlik','./js/util'], function (qlik, utils) {
             dimensions:{
                 uses: "dimensions",
                 min: 1,
-                max: 1/*,
-                items: { 
-                    dimsIconsCustom: {
-                        ref: "qAttributeExpressions.0.qExpression",                                
-                        component: "expression",
-                        expressionType: "measure",
-                        schemaIgnore: !0,
-                        label: "Background Color",
-                        defaultValue: ""                   
-                    }
-                }*/
+                max: 1
             },
             measures: {
                 uses: "measures",
@@ -678,34 +668,7 @@ define(['qlik','./js/util'], function (qlik, utils) {
                                 }],
                                 defaultValue: false
                             },
-                            backgroundColorType: {
-                                ref : "backgroundcolortype",
-                                type : "boolean",
-                                component : "switch",
-                                label : "Custom color",
-                                options: [{
-                                    value: true,
-                                    label: "On"
-                                }, {
-                                    value: false,
-                                    label: "Off"
-                                }],
-                                defaultValue: false,
-                                show : function(data) {
-                                    return data.backgroundcolorbool;
-                                }
-                            },
-                            backgroundCustomColor: {
-                                component: "expression",
-                                expressionType: "measure",
-                                schemaIgnore: !0,                                
-                                ref: "qHyperCubeDef.qDimensions.0.qAttributeExpressions.0.qExpression",
-                                label: "Color expression",
-                                defaultValue: "",
-                                show : function(data) {
-                                    return data.backgroundcolorbool && data.backgroundcolortype;
-                                }
-                            },
+                            
                             backgroundSingleColor: {
                                 ref: "backsinglecolor",
                                 label: "Background color",
@@ -715,7 +678,7 @@ define(['qlik','./js/util'], function (qlik, utils) {
                                     color: "#cccccc"  
                                 },
                                 show : function(data) {
-                                    return data.backgroundcolorbool && !data.backgroundcolortype;
+                                    return data.backgroundcolorbool;
                                 }
                             },
                             // images
@@ -757,16 +720,6 @@ define(['qlik','./js/util'], function (qlik, utils) {
                                     return data.backgroundimgbool;
                                 }
                             },
-                            backgroundImageUrl: {
-                                type: "string",
-                                ref: "backgroundimageurl",
-                                label: "Image url",
-                                defaultValue : '',
-                                expression : "optional",
-                                show : function(data) {
-                                    return data.backgroundimgsrc == 'url';
-                                }
-                            },   
                             backgroundImageExt: {
                                 type: "string",
                                 ref: "backgroundimageext",
@@ -900,7 +853,7 @@ define(['qlik','./js/util'], function (qlik, utils) {
                                 component: "expression",
                                 expressionType: "measure",
                                 schemaIgnore: !0,                                
-                                ref: "qHyperCubeDef.qDimensions.0.qAttributeExpressions.1.qExpression",
+                                ref: "qHyperCubeDef.qDimensions.0.qAttributeExpressions.0.qExpression",
                                 label: "Value",
                                 defaultValue: "",
                                 show : function(data) {

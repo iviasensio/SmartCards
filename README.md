@@ -5,7 +5,7 @@ Smart Cards, a Qlik Sense Extension
 
 Available in https://github.com/iviasensio/SmartCards
 
-Current version 1.0 7-feb-2022. Compatible with QS September 2017 or higher
+Current version 1.1 7-feb-2022. Compatible with QS September 2017 or higher
 
 Author Ivan Felipe Asensio QlikTech Iberia,s.l.
 
@@ -21,6 +21,9 @@ This extension is a text object with simple and smart look that performs:
 - smoth shapes
 - responsive design 
 
+Bug Fixes:
+- get a json protocol error when updating a variable
+- could not refresh dimension in case it start with symbol =
 
 ### Look
 ![SmartCards](https://user-images.githubusercontent.com/11334576/153006371-4cf965a8-283f-4c4c-bde0-096c6c38a155.png)

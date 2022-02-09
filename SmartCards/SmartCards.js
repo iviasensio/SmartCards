@@ -63,7 +63,7 @@ function (qlik,style,properties) {
 			var vDimValues = layout.qHyperCube.qSize.qcy;
 			var vMeaValues = layout.qHyperCube.qSize.qcx;
 			var vCurrentDimension = layout.qHyperCube.qDimensionInfo[0].qGroupFieldDefs[0];
-			
+			vCurrentDimension = vCurrentDimension.replace('=','');
 			var vGlobalMatrix = new Array();
 			var vTagsMatrix = new Array();
 			var myJsonDataRow = [];
@@ -173,8 +173,7 @@ function (qlik,style,properties) {
 			
 			var vBackgroundColorBool = layout.backgroundcolorbool;
 			var vBackgroundColor = layout.backsinglecolor.color;
-			var vBackgroundColorType = layout.backgroundcolortype;
-            if(!vBackgroundColorBool){
+			if(!vBackgroundColorBool){
             	vBackgroundColor = 'transparent';
             }
            
@@ -184,14 +183,11 @@ function (qlik,style,properties) {
 					for (var nMea = 1;nMea < vMeaValues;nMea++){
 						loopValues[nDim][nMea-1] = layout.qHyperCube.qDataPages[0].qMatrix[nDim][nMea].qText;
 						vDimArray[nDim] = layout.qHyperCube.qDataPages[0].qMatrix[nDim][0].qText;
-						if(vBackgroundColorBool && vBackgroundColorType){
-							vDimBGArray[nDim] = layout.qHyperCube.qDataPages[0].qMatrix[nDim][0].qAttrExps.qValues[0].qText;
-						}else{
-							vDimBGArray[nDim] = vBackgroundColor;						
-						}
+						vDimBGArray[nDim] = vBackgroundColor;						
+						
 						if(layout.qHyperCube.qDataPages[0].qMatrix[nDim][0].qAttrExps){
-							if(layout.qHyperCube.qDataPages[0].qMatrix[nDim][0].qAttrExps.qValues[1]){
-								vDimVarArray[nDim] = layout.qHyperCube.qDataPages[0].qMatrix[nDim][0].qAttrExps.qValues[1].qText;						
+							if(layout.qHyperCube.qDataPages[0].qMatrix[nDim][0].qAttrExps.qValues[0]){
+								vDimVarArray[nDim] = layout.qHyperCube.qDataPages[0].qMatrix[nDim][0].qAttrExps.qValues[0].qText;						
 							}
 						}
 						
@@ -204,18 +200,16 @@ function (qlik,style,properties) {
 					}				
 				}else{
 					vDimArray[nDim] = layout.qHyperCube.qDataPages[0].qMatrix[nDim][0].qText;
-					if(vBackgroundColorBool && vBackgroundColorType){
-						vDimBGArray[nDim] = layout.qHyperCube.qDataPages[0].qMatrix[nDim][0].qAttrExps.qValues[0].qText;
-					}else{
-						vDimBGArray[nDim] = vBackgroundColor;
-					}
+					vDimBGArray[nDim] = vBackgroundColor;
+					
 					if(layout.qHyperCube.qDataPages[0].qMatrix[nDim][0].qAttrExps){
-						if(layout.qHyperCube.qDataPages[0].qMatrix[nDim][0].qAttrExps.qValues[1]){
-							vDimVarArray[nDim] = layout.qHyperCube.qDataPages[0].qMatrix[nDim][0].qAttrExps.qValues[1].qText;
+						if(layout.qHyperCube.qDataPages[0].qMatrix[nDim][0].qAttrExps.qValues[0]){
+							vDimVarArray[nDim] = layout.qHyperCube.qDataPages[0].qMatrix[nDim][0].qAttrExps.qValues[0].qText;
 						}
 					}										
 				}
-			}			
+			}	
+				
 			//console.log(layout.qHyperCube)
 			var vBorderBool = layout.borderbool;				
 			var vBorder = layout.borderwidth + 'px solid ' + layout.bordercolor.color;			
@@ -236,8 +230,7 @@ function (qlik,style,properties) {
             	var auximg = '';
             	switch (layout.backgroundimgsrc){
             		case 'url':
-            			vBackgroundImage = layout.backgroundimageurl.replace(/\s/g, "%20");
-            			if(vBackgroundImage.slice(-1) != '/'){vBackgroundImage += '/';}
+            			vBackgroundImage = layout.backgroundimageurl.split(' ').join('%20');
             		break;
 
             		case 'lib':
@@ -408,7 +401,9 @@ function (qlik,style,properties) {
 				if(qlik.navigation.getMode() == 'analysis' || qlik.navigation.getMode() == 'play'){
 					if(vBehavior == 'dim'){
 						var qVal = this.getAttribute('name');
-						app.field(vCurrentDimension).selectValues([{qText:qVal}]);
+						//app.field(vCurrentDimension).selectValues([{qText:qVal}]);
+						
+						app.field(vCurrentDimension).toggleSelect(qVal, true);
 					}else{
 						if(vBehavior == 'var'){
 							var qVal = this.getAttribute('name');
