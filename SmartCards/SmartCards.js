@@ -225,12 +225,16 @@ function (qlik,style,properties) {
 			};
             var vServerURLBasic = ( config.isSecure ? "https://" : "http://" ) + config.host + (config.port ? ":" + config.port : "") + config.prefix ;									
 			var vServerURL = vServerURLBasic.replace('/single/','/');
-			
+			var currWidth = window.innerWidth;
             if(layout.backgroundimgbool){
             	var auximg = '';
             	switch (layout.backgroundimgsrc){
             		case 'url':
             			vBackgroundImage = layout.backgroundimageurl.split(' ').join('%20');
+            		break;
+
+            		case 'ext':
+            			vBackgroundImage = vServerURL + '/extensions/SmartCards/img/' + layout.backgroundimagesub.split(' ').join('%20') + '/';
             		break;
 
             		case 'lib':
@@ -269,7 +273,10 @@ function (qlik,style,properties) {
             }
             var cssBackImg = '';
             var vBackgroundImgSize = layout.backgroundimagesize;
-            var vExtension = layout.backgroundimageext;
+            var vExtension = '.' + layout.backgroundimageext;
+            if(vExtension == '.'){
+            	vExtension = '';
+            }
             
             //on hover behavior variables
             var vHoverImgBool = layout.hoverimgbool;
@@ -277,22 +284,26 @@ function (qlik,style,properties) {
 
             var vDisplay;
      		var vScrollClass = '';
-     		var vMinWidth = layout.gridminwidth + 'px';
-     		var vMaxWidth = layout.gridmaxwidth + 'px';
+     		var vGridRows = layout.gridrows;
+     		var vMinWidth,vMaxWidth,vMinHeight,vMaxHeight;
+     		var vBoxWidth = 'calc(' + ((100 / layout.gridcolumns) - 0) + '% - '+ (layout.gridpadding*2) + 'px)';
+            var vBoxHeight = 'calc(' + ((100 / vGridRows) - 0) + '% - '+ (layout.gridpadding*2) + 'px)';
      		var vOverflow = '';
      		var vScrollStyle = 'SmartCards-scroll-' + layout.gridscrollcolor;
-     		var vGridRows = layout.gridrows;
-     		var vMinHeight = layout.gridminheight;
-     		var vMaxHeight = layout.gridmaxheight;
+
+     		if(currWidth < 641){     			
+     			vMinWidth = 'calc(' + ((100 / 4) - 0) + '% - '+ (layout.gridpadding*2) + 'px)';     				
+     			vMaxWidth = 'calc(' + ((100 / 4) - 0) + '% - '+ (layout.gridpadding*2) + 'px)';
+     			
+     		}else{
+     			vMinWidth = 'calc(' + ((100 / layout.gridcolumns) - 0) + '% - '+ (layout.gridpadding*2) + 'px)';     				
+     			vMaxWidth = 'calc(' + ((100 / layout.gridcolumns) - 0) + '% - '+ (layout.gridpadding*2) + 'px)';
+     		}
      		switch (layout.gridscroll){
      			case 'landscape':
      				vDisplay = 'flex';
-     				if(vMinWidth == '0px'){
-     					vMinWidth = 'calc(' + ((100 / layout.gridcolumns) - 0) + '% - '+ (layout.gridpadding*2) + 'px)';
-     				}
-     				if(vMaxWidth == '0px'){
-     					vMaxWidth = 'calc(' + ((100 / layout.gridcolumns) - 0) + '% - '+ (layout.gridpadding*2) + 'px)';
-     				}
+     				
+     				
      				vScrollClass = 'SmartCards-scroll-landscape';
      				vOverflow = 'overflow-x: hidden;';
      				vGridRows = 1;
@@ -302,26 +313,28 @@ function (qlik,style,properties) {
      			case 'portrait':
      				vDisplay = 'block';
      				vScrollClass = 'SmartCards-scroll-portrait';
+     				/*vMinWidth = vBoxWidth;
+            		vMaxWidth = vBoxWidth;*/
      			break;
      			case 'unlock':
      				vDisplay = 'block';
      				vScrollClass = 'SmartCards-scroll-unlock';
+     				/*vMinWidth = vBoxWidth;
+            		vMaxWidth = vBoxWidth;*/
      			break;
      		}
      		
             var html = '<div qv-extension id="SmartCards-extension" class = "SmartCards-extension ' + vScrollClass + ' SmartCards-scroll SmartCards-scroll-style ' + vScrollStyle + '" style = "display:' + vDisplay + ';' + vOverflow + '">';
             
-            var vBoxWidth = 'calc(' + ((100 / layout.gridcolumns) - 0) + '% - '+ (layout.gridpadding*2) + 'px)';
-            var vBoxHeight = 'calc(' + ((100 / vGridRows) - 0) + '% - '+ (layout.gridpadding*2) + 'px)';
+            
             vMinHeight = vBoxHeight;
             vMaxHeight = vBoxHeight;
-            vMinWidth = vBoxWidth;
-            vMaxWidth = vBoxWidth;
+            
             
 			for (var nDim = 0;nDim < vDimValues;nDim++){
 				if(vBackgroundImage != ''){         
 					var vImgName = vDimArray[nDim].replace(/\s/g, "%20");
-	            	cssBackImg = 'background-image: url(' + vBackgroundImage + vImgName + '.' + vExtension +');background-size: ' + vBackgroundImgSize + ';background-position: ' + layout.backgroundimagealign + ';background-repeat: no-repeat;';
+	            	cssBackImg = 'background-image: url(' + vBackgroundImage + vImgName + vExtension +');background-size: ' + vBackgroundImgSize + ';background-position: ' + layout.backgroundimagealign + ';background-repeat: no-repeat;';
 	            }
 	            
 	            var vName = vDimArray[nDim];

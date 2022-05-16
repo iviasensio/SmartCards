@@ -713,11 +713,35 @@ define(['qlik','./js/util'], function (qlik, utils) {
                                   {
                                     value: "app",
                                     label: "Image from app"
+                                  },
+                                  {
+                                    value: "ext",
+                                    label: "SmartCards img folder"
                                   }
                                 ],
                                 defaultValue: "app",
                                 show : function(data) {
                                     return data.backgroundimgbool;
+                                }
+                            },
+                            backgroundImageUrl: {
+                                type: "string",
+                                ref: "backgroundimageurl",
+                                label: "Image url",
+                                defaultValue : '',
+                                expression : "optional",
+                                show : function(data) {
+                                    return data.backgroundimgbool && data.backgroundimgsrc == 'url';
+                                }
+                            },
+                            backgroundImageSubfolder: {
+                                type: "string",
+                                ref: "backgroundimagesub",
+                                label: "Type a subfolder if needed",
+                                defaultValue : '',
+                                expression : "optional",
+                                show : function(data) {
+                                    return data.backgroundimgbool && data.backgroundimgsrc == 'ext';
                                 }
                             },
                             backgroundImageExt: {
@@ -935,7 +959,7 @@ define(['qlik','./js/util'], function (qlik, utils) {
                                 component: "text"
                             },
                             paragraph2: {
-                                label: "Smart Cards visualization is an extension created by Ivan Felipe, offered under MIT License.",
+                                label: "Smart Cards visualization is an extension created by Ivan Felipe, offered under NGU License.",
                                 component: "text"
                             },
                             paragraph3: {
