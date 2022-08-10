@@ -456,7 +456,24 @@ define(['qlik','./js/util'], function (qlik, utils) {
                         show : function(data) {
                             return data.qDef.tagtype == 'text' && data.qDef.textstyleshadow;
                         }
-                    },                   
+                    },
+                    TextFooterBool: {
+                        ref : "qDef.textfooterbool",
+                        type : "boolean",
+                        component : "switch",
+                        label : "Attach to footer",
+                        options: [{
+                            value: false,
+                            label: "Off"
+                        }, {
+                            value: true,
+                            label: "On"
+                        }],
+                        defaultValue: false,
+                        show : function(data) {
+                            return data.qDef.tagtype == 'text'
+                        }
+                    },              
                     //Separator
                     SepDivColorBool: {
                         ref : "qDef.sepdivcolorbool",
@@ -800,6 +817,19 @@ define(['qlik','./js/util'], function (qlik, utils) {
                                 max: 1,
                                 step: 0.05,
                                 defaultValue: 1                                
+                            },
+                            borderRadius: {
+                                type: "number",
+                                component: "slider",
+                                label: "Border radius",
+                                ref: "borderradius",
+                                min: 0,
+                                max: 50,
+                                step: 2,
+                                defaultValue: 0,
+                                show : function(data) {
+                                    return  data.backgroundimgbool;
+                                }                               
                             }
                         }
                     },    
@@ -836,7 +866,41 @@ define(['qlik','./js/util'], function (qlik, utils) {
                                 }
                             }                            
                         }
-                    },             
+                    },       
+                    //Footer
+                    FooterGroup: {
+                        label: "Footer",
+                        type: "items",
+                        items: {
+                            footerBool: {
+                                ref : "footerbool",
+                                type : "boolean",
+                                component : "switch",
+                                label : "Add dynamic footer",
+                                options: [{
+                                    value: 0,
+                                    label: "Off"
+                                }, {
+                                    value: 1,
+                                    label: "On"
+                                }],
+                                defaultValue: 0
+                            },
+                            footerHeight: {
+                                type: "number",
+                                component: "slider",
+                                label: "Height",
+                                ref: "footerheight",
+                                min: 0,
+                                max: 0.5,
+                                step: 0.05,
+                                defaultValue: 0.2,
+                                show : function(data) {
+                                    return data.footerbool;
+                                }
+                            }
+                        }
+                    },               
                     //Behavior
                     Behavior: {
                         label: "Behavior",
@@ -929,7 +993,7 @@ define(['qlik','./js/util'], function (qlik, utils) {
                                 show : function(data) {
                                     return  data.borderbool;
                                 }                               
-                            }
+                            }                            
                         }
                     },
                     Rotation: {

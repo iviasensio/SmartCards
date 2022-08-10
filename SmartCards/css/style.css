@@ -91,8 +91,9 @@
 }
                     
 
-.SmartCards-scroll
+.SmartCards-scroll{}
 .SmartCards-scroll-landscape{
+    overflow-y:hidden;
     overflow-x:hidden;
 }
 .SmartCards-scroll-landscape:hover {
@@ -100,12 +101,14 @@
 }
 .SmartCards-scroll-portrait{
     overflow-y:hidden;
+    overflow-x:hidden;
 }
 .SmartCards-scroll-portrait:hover {
     overflow-y: auto;
 }
 .SmartCards-scroll-unlock{
     overflow-y:initial;
+    overflow-x:hidden;
 }
 .SmartCards-img-bg{
     width: 100%;
@@ -122,12 +125,13 @@
     line-height: 1.3;
     overflow-y:hidden;
 }
+
 .SmartCards-container-box{
     display:inline-block;
 }
 .SmartCards-box{
     /*width: 100%;*/
-    height: 100%;
+    /*height: 100%;*/
     display:flex;
     cursor:pointer;
 }
@@ -209,8 +213,17 @@
     
 }
 .SmartCards-img-container {
-    position: relative;   
+    /*position: relative;   */
     /*max-width: 70px; */
+}
+.SmartCards-footer-container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 1.3;
+    overflow-y:hidden;
 }
 
 .SmartCards-img {

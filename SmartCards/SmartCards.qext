@@ -3,7 +3,7 @@
 	"description" : "Smart Cards for Qlik Sense",
 	"icon" : "slide-show",
 	"type" : "visualization",
-	"version" : "1.2",	
+	"version" : "1.3",	
 	"author" : "Ivan Felipe",
 	"email" : "ivan.felipe@qlik.com",
 	"company" : "QlikTech Iberia",

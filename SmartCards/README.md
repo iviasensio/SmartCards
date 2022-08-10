@@ -6,7 +6,8 @@ Smart Cards, a Qlik Sense Extension
 Available in https://github.com/iviasensio/SmartCards
 
 Previous version 1.1 7-feb-2022. Compatible with QS September 2017 or higher
-Current version 1.2 16-may-2022. Compatible with QS September 2017 or higher
+Previous version 1.2 16-may-2022. Compatible with QS September 2017 or higher
+Current version 1.3 10-aug-2022. Compatible with QS September 2017 or higher
 
 Author Ivan Felipe Asensio QlikTech Iberia,s.l.
 
@@ -30,6 +31,12 @@ Improvements in 1.2:
 - Allow a path for images in a subfolder inside the extension
 - Allow to work with different image extensions (png + jpg + ..., just add the extension in the main dimension)
 
+Improvements in 1.3:
+- Allow adding text over the image
+- Some examples use other extensions :
+    . "SmartText" : https://github.com/iviasensio/SmartText
+    . "BeautifyMe" : https://github.com/iviasensio/BeautifyMe
+
 ### Look
 ![SmartCards](https://user-images.githubusercontent.com/11334576/153006371-4cf965a8-283f-4c4c-bde0-096c6c38a155.png)
 
@@ -45,6 +52,10 @@ Improvements in 1.2:
  		. For www.youtube.com allow script-src
 		. For img.youtube.com allow img-src 
 
+- Some examples use safe images allocated in AWS/S3, so you need to allow access:
+    . Go to the console\Content Security Policy
+    . Add a new policy, call it "S3 public images"
+    . allow this URL "publicqssaasbucket.s3.eu-west-1.amazonaws.com", only for the source type "img-src"
 
 
 *Install in Server:
@@ -68,3 +79,4 @@ Improvements in 1.2:
 - Download the package and copy the folder SmartCards in the path C:\Users\'username'\Documents\Qlik\Sense\Extensions
 - copy the example SmartCardsExample.qvf in C:\Users\'username'\Documents\Qlik\Sense\Apps
 - Unzip the theme Netflix.zip and copy the unzipped folder (called Netflix) in C:\Users\'username'\Documents\Qlik\Sense\Extensions
+

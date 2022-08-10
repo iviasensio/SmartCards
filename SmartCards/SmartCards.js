@@ -124,7 +124,8 @@ function (qlik,style,properties) {
 		         			"bold":vBold,
 		         			"italic":vItalic,
 		         			"underlined":vUnderlined,
-		         			"shadow":vShadow
+		         			"shadow":vShadow,
+		         			"footer":m.textfooterbool
 		         		};
 		    		break;
 
@@ -212,9 +213,12 @@ function (qlik,style,properties) {
 				
 			//console.log(layout.qHyperCube)
 			var vBorderBool = layout.borderbool;				
-			var vBorder = layout.borderwidth + 'px solid ' + layout.bordercolor.color;			
+			var vBorder = layout.borderwidth + 'px solid ' + layout.bordercolor.color;
+					
 									
             var vOpacity = layout.backgroundopacity;
+            var vBorderRadius = layout.borderradius + '% ';	
+            
             var vBackgroundImage = '';            
             var prefix = window.location.pathname.substr( 0, window.location.pathname.toLowerCase().lastIndexOf( "/extensions" ) + 1 );
 			var config = {
@@ -269,7 +273,7 @@ function (qlik,style,properties) {
 	        }
 	        
             if(!vBorderBool){
-            	vBorder = 'none';
+            	vBorder = 'none';            	
             }
             var cssBackImg = '';
             var vBackgroundImgSize = layout.backgroundimagesize;
@@ -281,6 +285,14 @@ function (qlik,style,properties) {
             //on hover behavior variables
             var vHoverImgBool = layout.hoverimgbool;
 			var vHoverOpacity = layout.hoveropacity;
+
+			//on footer variables
+			var vFooterBool   = layout.footerbool;
+			var vBodyHeight   = '100%';
+			var vFooterHeight = (layout.footerheight * 100) + '%';
+			if(vFooterBool){
+				vBodyHeight = ((1 - layout.footerheight) * 100) + '%';
+			}
 
             var vDisplay;
      		var vScrollClass = '';
@@ -325,7 +337,7 @@ function (qlik,style,properties) {
      		}
      		
             var html = '<div qv-extension id="SmartCards-extension" class = "SmartCards-extension ' + vScrollClass + ' SmartCards-scroll SmartCards-scroll-style ' + vScrollStyle + '" style = "display:' + vDisplay + ';' + vOverflow + '">';
-            
+            var htmlf = '';
             
             vMinHeight = vBoxHeight;
             vMaxHeight = vBoxHeight;
@@ -334,6 +346,7 @@ function (qlik,style,properties) {
 			for (var nDim = 0;nDim < vDimValues;nDim++){
 				if(vBackgroundImage != ''){         
 					var vImgName = vDimArray[nDim].replace(/\s/g, "%20");
+					console.log(vBackgroundImage,vImgName,vExtension)
 	            	cssBackImg = 'background-image: url(' + vBackgroundImage + vImgName + vExtension +');background-size: ' + vBackgroundImgSize + ';background-position: ' + layout.backgroundimagealign + ';background-repeat: no-repeat;';
 	            }
 	            
@@ -342,16 +355,23 @@ function (qlik,style,properties) {
 	            	vName = vDimVarArray[nDim];	            	
 	            }
 				html += '<div class = "SmartCards-container-box" style="width:' + vBoxWidth + ';height:' + vBoxHeight + ';max-width:' + vMaxWidth +';min-width:' + vMinWidth +';max-height:'+ vMaxHeight +'px;min-height:'+ vMinHeight +'px;padding:'+layout.gridpadding+'px" name = "' + vName + '">';
-				html += '<div id = "SmartCards-box-' + vSufixId + nDim +'" class="SmartCards-box" style = "border:' + vBorder + ';background:' + vDimBGArray[nDim] +';' + ';transform:rotate(' + layout.rotation + 'deg);">';
+				html += '<div id = "SmartCards-box-' + vSufixId + nDim +'" class="SmartCards-box" style = "border:' + vBorder + ';background:' + vDimBGArray[nDim] +';' + ';transform:rotate(' + layout.rotation + 'deg);height: ' + vBodyHeight + ';">';
 											
-				html += '<div id = "SmartCards-img-bg-' + vDimArray[nDim] + '" class="SmartCards-img-bg" style = "' + cssBackImg + 'opacity:' + vOpacity + ';z-index:' + vHoverImgBool + '" title = "' + vDimArray[nDim] + '"></div>';
-				
+				//html += '<div class = "SmartCards-img-container"  style = "height:' + vBodyHeight + '">';
+				html += '<div id = "SmartCards-img-bg-' + vDimArray[nDim] + '" class="SmartCards-img-bg" style = "' + cssBackImg + 'opacity:' + vOpacity + ';border-radius: ' + vBorderRadius + ';z-index:' + vHoverImgBool + '" title = "' + vDimArray[nDim] + '"></div>';
+				//html += '</div>';
 	            html += '<div id = "SmartCards-span-container-' + vDimArray[nDim] + '" class ="SmartCards-span-container">';
+
+				htmlf = '';
 				
 	            for(var me = 0;me < vTagsMatrix.length;me++){
 	            	switch(vTagsMatrix[me].type){
 	            		case 'text':
-	            			html += fillText(vTagsMatrix[me],nDim);
+	            			if(!vTagsMatrix[me].footer){
+								html += fillText(vTagsMatrix[me],nDim);	
+							}else{
+								htmlf += fillText(vTagsMatrix[me],nDim);	
+							}
 	            		break;
 	            		case 'separator':
 	            			html += fillSeparator(vTagsMatrix[me]);
@@ -364,7 +384,13 @@ function (qlik,style,properties) {
 	            	}
 				}
 				
-				html += '</div></div></div>';
+				html += '</div></div>';
+				if(vFooterBool){
+					html += '<div class = "SmartCards-footer-container"  style = "height:' + vFooterHeight + '">';
+					html += htmlf;
+					html += '</div>';
+				}
+				html += '</div>';
 			}
 
 			html += '</div>';	
