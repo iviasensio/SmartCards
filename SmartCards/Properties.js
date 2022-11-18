@@ -305,7 +305,7 @@ define(['qlik','./js/util'], function (qlik, utils) {
                         label: "Padding left",
                         ref: "qDef.textpaddingleft",
                         min: 5,
-                        max: 50,
+                        max: 100,
                         step: 5,
                         defaultValue: 5,
                         show : function(data) {

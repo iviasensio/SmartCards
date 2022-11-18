@@ -355,7 +355,7 @@ function (qlik,style,properties) {
 	            	vName = vDimVarArray[nDim];	            	
 	            }
 				html += '<div class = "SmartCards-container-box" style="width:' + vBoxWidth + ';height:' + vBoxHeight + ';max-width:' + vMaxWidth +';min-width:' + vMinWidth +';max-height:'+ vMaxHeight +'px;min-height:'+ vMinHeight +'px;padding:'+layout.gridpadding+'px" name = "' + vName + '">';
-				html += '<div id = "SmartCards-box-' + vSufixId + nDim +'" class="SmartCards-box" style = "border:' + vBorder + ';background:' + vDimBGArray[nDim] +';' + ';transform:rotate(' + layout.rotation + 'deg);height: ' + vBodyHeight + ';">';
+				html += '<div id = "SmartCards-box-' + vSufixId + nDim +'" class="SmartCards-box" style = "border:' + vBorder + ';border-radius: ' + vBorderRadius + ';background:' + vDimBGArray[nDim] +';' + ';transform:rotate(' + layout.rotation + 'deg);height: ' + vBodyHeight + ';">';
 											
 				//html += '<div class = "SmartCards-img-container"  style = "height:' + vBodyHeight + '">';
 				html += '<div id = "SmartCards-img-bg-' + vDimArray[nDim] + '" class="SmartCards-img-bg" style = "' + cssBackImg + 'opacity:' + vOpacity + ';border-radius: ' + vBorderRadius + ';z-index:' + vHoverImgBool + '" title = "' + vDimArray[nDim] + '"></div>';
