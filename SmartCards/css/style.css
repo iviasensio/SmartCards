@@ -1,26 +1,6 @@
 @font-face {
-    font-family: 'Jost';
-    src: url('../fonts/Jost.ttf');
-    /* IE9 Compat Modes */
-}
-@font-face {
     font-family: 'OpenSans';
     src: url('../fonts/OpenSans-Regular.ttf');
-    /* IE9 Compat Modes */
-}
-@font-face {
-    font-family: 'OpenSans-Light';
-    src: url('../fonts/OpenSans-Light.ttf');
-    /* IE9 Compat Modes */
-}
-@font-face {
-    font-family: 'OpenSans-Semi';
-    src: url('../fonts/OpenSans-SemiBold.ttf');
-    /* IE9 Compat Modes */
-}
-@font-face {
-    font-family: 'EraserRegular';
-    src: url('../fonts/EraserRegular-DO1D.ttf');
     /* IE9 Compat Modes */
 }
 @font-face {
@@ -28,25 +8,89 @@
     src: url('../fonts/erasdust.ttf');
     /* IE9 Compat Modes */
 }
+@font-face {
+    font-family: 'LittleWerewolf';
+    src: url('../fonts/LittleWerewolf.ttf');
+    /* IE9 Compat Modes */
+}
+@font-face {
+    font-family: 'Grape Nuts';
+    src: url('../fonts/GrapeNuts-Regular.ttf');
+}
 .SmartCards-extension{
     width:100%;
     height: -webkit-fill-available;    
 }
-
-.SmartCards-scroll-style::-webkit-scrollbar
+.SmartCards-scroll-hidden{
+    overflow:hidden;
+}
+.SmartCards-scroll-style-6::-webkit-scrollbar
+{
+    width: 6px;
+    height: 6px;
+}
+.SmartCards-scroll-style-9::-webkit-scrollbar
+{
+    width: 9px;
+    height: 9px;
+}
+.SmartCards-scroll-style-12::-webkit-scrollbar
 {
     width: 12px;
     height: 12px;
-    /*background-color: #F5F5F5;*/
 }
 
-.SmartCards-scroll-style::-webkit-scrollbar-track
+.SmartCards-scroll-style-smooth-false::-webkit-scrollbar-track
 {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
     border-radius: 10px;
-    background-color: #F5F5F5;
+    /*background-color: #F5F5F5;*/
 }
 
+.SmartCards-scroll-style-smooth-true::-webkit-scrollbar-track
+{
+    border-radius: 10px;
+}
+.SmartCards-scroll-track-red::-webkit-scrollbar-track
+{
+    background-color: #D62929;
+}
+.SmartCards-scroll-track-grey::-webkit-scrollbar-track
+{
+    background-color: #808080;
+}
+.SmartCards-scroll-track-black::-webkit-scrollbar-track
+{
+    background-color: #262626;
+}
+.SmartCards-scroll-track-blue::-webkit-scrollbar-track
+{
+    background-color: #4477aa;
+}
+.SmartCards-scroll-track-green::-webkit-scrollbar-track
+{
+    background-color: #4CAF50;
+}
+.SmartCards-scroll-track-brown::-webkit-scrollbar-track
+{
+    background-color: #bf7340;
+}
+.SmartCards-scroll-track-orange::-webkit-scrollbar-track
+{
+    background-color: #c55a11;
+}
+.SmartCards-scroll-track-soft::-webkit-scrollbar-track
+{
+    background-color: #f5f5f5;
+}
+.SmartCards-scroll-track-white::-webkit-scrollbar-track
+{
+    background-color: #ffffff;
+}
+.SmartCards-scroll-track-purple::-webkit-scrollbar-track
+{
+    background-color: #A435F0;
+}
 .SmartCards-scroll-red::-webkit-scrollbar-thumb
 {
     border-radius: 10px;
@@ -89,7 +133,24 @@
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
     background-color: #c55a11;
 }
-                    
+.SmartCards-scroll-soft::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #F5F5F5;
+}                    
+.SmartCards-scroll-white::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #ffffff;
+}
+.SmartCards-scroll-purple::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #A435F0;
+}
 
 .SmartCards-scroll{}
 .SmartCards-scroll-landscape{
@@ -110,20 +171,14 @@
     overflow-y:initial;
     overflow-x:hidden;
 }
-.SmartCards-img-bg{
-    width: 100%;
-    height: 100%;
+.SmartCards-top-bar{
     position: absolute;
-    /*display:flex;*/
 }
-.SmartCards-span-container{
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 10px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    line-height: 1.3;
-    overflow-y:hidden;
+.SmartCards-img-bg{
+    /*width: 100%;
+    height: 100%;*/
+    /*position: absolute;*/
+    /*display:flex;*/
 }
 
 .SmartCards-container-box{
@@ -147,6 +202,7 @@
 .SmartCards-span-container:hover{
     overflow-y:auto;
 }
+
 /*.SmartCards-span-container > br{
     display:contents;
 }*/
@@ -211,10 +267,6 @@
     margin-left: 15px;*/
     margin:5px;
     
-}
-.SmartCards-img-container {
-    /*position: relative;   */
-    /*max-width: 70px; */
 }
 .SmartCards-footer-container {
     width: 100%;
@@ -486,6 +538,7 @@
         line-height:1.1;
         padding-right: 10px;
     }
+    
 }
 /*@media screen and (max-width:736px){
     .SmartCards-extension{

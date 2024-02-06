@@ -8,6 +8,8 @@ Available in https://github.com/iviasensio/SmartCards
 Previous version 1.1 7-feb-2022. Compatible with QS September 2017 or higher
 Previous version 1.2 16-may-2022. Compatible with QS September 2017 or higher
 Current version 1.3 10-aug-2022. Compatible with QS September 2017 or higher
+Current version 1.4 16-jun-2023. Compatible with QS September 2017 or higher
+Current version 1.5 11-jan-2024. Compatible with QS September 2017 or higher
 
 Author Ivan Felipe Asensio QlikTech Iberia,s.l.
 
@@ -36,6 +38,21 @@ Improvements in 1.3:
 - Some examples use other extensions :
     . "SmartText" : https://github.com/iviasensio/SmartText
     . "BeautifyMe" : https://github.com/iviasensio/BeautifyMe
+
+Improvements in 1.4:
+- Allow chose size and position for background images
+- Allow to round background images
+- Allow adding a top bar with background colors and visual effects
+- Shadows
+
+Improvements in 1.5:
+- Custom scroll
+- More fonts
+- More responsive options
+- Padding control
+- Allow images insted of icons between texts
+- Allow full URL for external images
+- Allow to set images as a left panel
 
 ### Look
 ![SmartCards](https://user-images.githubusercontent.com/11334576/153006371-4cf965a8-283f-4c4c-bde0-096c6c38a155.png)

@@ -9,6 +9,9 @@ define(['qlik','./js/util'], function (qlik, utils) {
                         value: "Arial",
                         label: "Arial"
                     }, {
+                        value: "Brush Script MT",
+                        label: "Brush Script MT"
+                    }, {
                         value: "Calibri",
                         label: "Calibri"
                     }, {
@@ -17,6 +20,12 @@ define(['qlik','./js/util'], function (qlik, utils) {
                     }, {
                         value: "erasdust",
                         label: "Eraser"
+                    },{
+                        value: "Grape Nuts",
+                        label: "Grape Nuts"
+                    }, {
+                        value: "LittleWerewolf",
+                        label: "Little Werewolf"
                     }, {
                         value: "Lucida Handwriting",
                         label: "Lucida Handwriting"
@@ -26,6 +35,15 @@ define(['qlik','./js/util'], function (qlik, utils) {
                     }, {
                         value: "Oswald",
                         label: "Oswald"
+                    }, {
+                        value: "Permanent Marker, fantasy",
+                        label: "Permanent Marker"
+                    }, {
+                        value: "Playfair Display, serif",
+                        label: "Playfair Display"
+                    }, {
+                        value: "roboto",
+                        label: "Roboto"
                     },{
                         value: "sans-serif",
                         label: "MS Sans Serif"
@@ -33,14 +51,11 @@ define(['qlik','./js/util'], function (qlik, utils) {
                         value: "Tahoma",
                         label: "Tahoma"
                     }, {
+                        value: "Tw Cen MT",
+                        label: "Tw Cen MT"
+                    }, {
                         value: "Verdana",
                         label: "Verdana"
-                    }, {
-                        value: "Brush Script MT",
-                        label: "Brush Script MT"
-                    }, {
-                        value: "Playfair Display, serif",
-                        label: "Playfair Display"
                     }, {
                         value: "unset",
                         label: "Unset"
@@ -54,6 +69,34 @@ define(['qlik','./js/util'], function (qlik, utils) {
                     }, {
                         value: "selvarvalues",
                         label: "Set variable value"
+                    }];
+    var vEffects = [{
+                        value: "BarChart",
+                        label: "BarChart"
+                    }, {
+                        value: "Connections",
+                        label: "Connections"
+                    }, {
+                        value: "DataFlow",
+                        label: "DataFlow"
+                    }, {
+                        value: "Datalines",
+                        label: "Datalines"
+                    }, {
+                        value: "LineChart",
+                        label: "LineChart"
+                    }, {
+                        value: "LineGraph",
+                        label: "LineGraph"
+                    }, {
+                        value: "Nodes",
+                        label: "Nodes"
+                    }, {
+                        value: "ScatterPlot",
+                        label: "ScatterPlot"
+                    }, {
+                        value: "Summer",
+                        label: "Summer"
                     }];
     var vNavBool = [{
                         value: "none",
@@ -74,6 +117,9 @@ define(['qlik','./js/util'], function (qlik, utils) {
                     }, {
                         value: "icon",
                         label: "Icon"
+                    }, {
+                        value: "image",
+                        label: "Image"
                     }];
     var vImgSize = [{
                         value: "auto",
@@ -91,6 +137,9 @@ define(['qlik','./js/util'], function (qlik, utils) {
                     }, {
                         value: "100% 100%",
                         label: "Stretch to fit"
+                    }, {
+                        value: "static",
+                        label: "Static position"
                     }];
     var vSideVertical = [{
                         value: "top:0",
@@ -154,45 +203,58 @@ define(['qlik','./js/util'], function (qlik, utils) {
                     },{
                         value: "orange",
                         label: "Orange"
-                    }];                
+                    },{
+                        value: "purple",
+                        label: "Purple"
+                    },{
+                        value: "soft",
+                        label: "Soft"
+                    },{
+                        value: "white",
+                        label: "White"
+                    },{
+                        value: "transparent",
+                        label: "Transparent"
+                    }];
+    
                                 
     var vIcons = [{
-                        value: "lui-icon--tick",
+                        value: "tick",
                         component: "icon-item",
                         icon: "tick",
                         size: "small"
                     }, {
-                        value: "lui-icon--warning_triangle",
+                        value: "warning_triangle",
                         component: "icon-item",
                         icon: "warning_triangle",
                         size: "small"
                     }, {
-                        value: "lui-icon--triangle_top",
+                        value: "triangle_top",
                         component: "icon-item",
                         icon: "triangle_top",
                         size: "small"
                     }, {
-                        value: "lui-icon--triangle_bottom",
+                        value: "triangle_bottom",
                         component: "icon-item",
                         icon: "triangle_bottom",
                         size: "small"
                     },{
-                        value: "lui-icon--star",
+                        value: "star",
                         component: "icon-item",
                         icon: "star",
                         size: "small"
                     },{
-                        value: "lui-icon--dot",
+                        value: "dot",
                         component: "icon-item",
                         icon: "dot",
                         size: "small"
                     },{
-                        value: "lui-icon--info",
+                        value: "info",
                         component: "icon-item",
                         icon: "info",
                         size: "small"
                     },{
-                        value: "lui-icon--tag",
+                        value: "tag",
                         component: "icon-item",
                         icon: "tag",
                         size: "small"
@@ -218,6 +280,43 @@ define(['qlik','./js/util'], function (qlik, utils) {
                         label: "Tag Type",
                         options: vTagType,
                         defaultValue: "text"
+                    },
+                    // img
+                    /*ImgSpan: {
+                        label:"Image url",
+                        ref: "qDef.imgspan",
+                        defaultValue : '',
+                        expression : "optional",
+                        type: "string",
+                        show : function(data) {
+                            return data.qDef.tagtype == 'image';
+                        }
+                    },*/
+                    ImgSpanHeight: {
+                        type: "number",
+                        component: "slider",
+                        label: "Height",
+                        ref: "qDef.imgspanheight",
+                        min: 5,
+                        max: 50,
+                        step: 1,
+                        defaultValue: 5,
+                        show : function(data) {
+                            return data.qDef.tagtype == 'image';
+                        }                               
+                    },
+                    ImgSpanWidth: {
+                        type: "number",
+                        component: "slider",
+                        label: "Width",
+                        ref: "qDef.imgspanwidth",
+                        min: 10,
+                        max: 100,
+                        step: 5,
+                        defaultValue: 30,
+                        show : function(data) {
+                            return data.qDef.tagtype == 'image';
+                        }                               
                     },
                     // icons
                     IconType: {
@@ -269,7 +368,7 @@ define(['qlik','./js/util'], function (qlik, utils) {
                         expressionType: "measure",
                         schemaIgnore: !0,
                         label: "Leonardo icon expression",
-                        placeholder:"lui-icon--remove",
+                        placeholder:"leonardo icon name",
                         defaultValue: "='remove'",
                         show : function(data) {
                             return data.qDef.tagtype == 'icon' && data.qDef.icontype;
@@ -283,7 +382,7 @@ define(['qlik','./js/util'], function (qlik, utils) {
                         component: "color-picker",  
                         defaultValue: {  
                             color: '#7b7a78'  
-                        },
+                        },                        
                         show : function(data) {
                             return data.qDef.tagtype == 'text';
                         }
@@ -296,15 +395,32 @@ define(['qlik','./js/util'], function (qlik, utils) {
                         options: vFontSizes,
                         defaultValue: "SmartCards-span-m",
                         show : function(data) {
-                            return data.qDef.tagtype != 'separator';
+                            return data.qDef.tagtype != 'separator' && data.qDef.tagtype != 'image';
                         }
                     },
+                    PaddingType: {
+                        ref : "qDef.paddingtype",
+                        type : "boolean",
+                        component : "switch",
+                        label : "Padding measure",
+                        options: [{
+                            value: true,
+                            label: "%"
+                        }, {
+                            value: false,
+                            label: "Pixels"
+                        }],
+                        defaultValue: false,
+                        show : function(data) {
+                            return data.qDef.tagtype != 'separator';
+                        }
+                    },    
                     TextPaddingLeft: {
                         type: "number",
                         component: "slider",
                         label: "Padding left",
                         ref: "qDef.textpaddingleft",
-                        min: 5,
+                        min: 0,
                         max: 100,
                         step: 5,
                         defaultValue: 5,
@@ -332,7 +448,7 @@ define(['qlik','./js/util'], function (qlik, utils) {
                         ref: "qDef.textpaddingtop",
                         min: 0,
                         max: 150,
-                        step: 10,
+                        step: 5,
                         defaultValue: 0,
                         show : function(data) {
                             return data.qDef.tagtype != 'separator';
@@ -496,7 +612,7 @@ define(['qlik','./js/util'], function (qlik, utils) {
                         type: "string",
                         ref: "qDef.sepdivcustomcolor",
                         label: "Color expression",
-                        defaultValue : "='#cccccc'//RGB and qlik colors also available'",
+                        defaultValue : '#cccccc' ,
                         expression : "optional",
                         show : function(data) {
                             return data.qDef.sepdivcolorbool && data.qDef.tagtype == 'separator';
@@ -625,17 +741,6 @@ define(['qlik','./js/util'], function (qlik, utils) {
                                   }
                                 ],
                                 defaultValue: "landscape"
-                            },
-                            gridScrollColor: {
-                                ref: "gridscrollcolor",
-                                type: "string",
-                                component: "dropdown",
-                                label: "Scroll color",
-                                options: vScrollCol,
-                                defaultValue: "red",
-                                show : function(data) {
-                                    return data.gridscroll != 'unlock';
-                                }
                             },                      
                             gridColumns: {
                                 type: "number",
@@ -663,10 +768,92 @@ define(['qlik','./js/util'], function (qlik, utils) {
                                 max: 20,
                                 step: 1,
                                 defaultValue: 2
-                            }                            
+                            },
+                            gridMargin: {                                
+                                type: "number",
+                                component: "slider",
+                                label: "Top margin",
+                                ref: "gridmargin",
+                                min: 0,
+                                max: 20,
+                                step: 1,
+                                defaultValue: 2
+                            }
                         }
                     }, 
                     
+                    ScrollGroup: {
+                        label: "Scroll",
+                        type: "items",
+                        items: {
+                            gridScrollColor: {
+                                ref: "gridscrollcolor",
+                                type: "string",
+                                component: "dropdown",
+                                label: "Scroll color",
+                                options: vScrollCol,
+                                defaultValue: "red",
+                                show : function(data) {
+                                    return data.gridscroll != 'unlock';
+                                }
+                            },
+                            gridScrollSmoothBool: {
+                                ref : "gridscrollsmoothbool",
+                                type : "boolean",
+                                component : "switch",
+                                label : "Background color",
+                                options: [{
+                                    value: true,
+                                    label: "On"
+                                }, {
+                                    value: false,
+                                    label: "Off"
+                                }],
+                                defaultValue: false,
+                                show : function(data) {
+                                    return data.gridscroll != 'unlock';
+                                }
+                            },
+                            gridScrollBackgroundColor: {
+                                ref: "gridscrollbackgroundcolor",
+                                type: "string",
+                                component: "dropdown",
+                                label: "Scroll background",
+                                options: vScrollCol,
+                                defaultValue: "soft",
+                                show : function(data) {
+                                    return data.gridscroll != 'unlock' && data.gridscrollsmoothbool;
+                                }
+                            },
+                            gridScrollSize: {                                
+                                type: "number",
+                                component: "slider",
+                                label: "Scroll width",
+                                ref: "gridscrollwidth",
+                                min: 6,
+                                max: 12,
+                                step: 3,
+                                defaultValue: 9,
+                                show : function(data) {
+                                    return data.gridscroll != 'unlock';
+                                }
+                            },gridScrollCellsBool: {
+                                ref : "gridscrollceelsbool",
+                                type : "boolean",
+                                component : "switch",
+                                label : "Allow scroll in cells",
+                                options: [{
+                                    value: true,
+                                    label: "On"
+                                }, {
+                                    value: false,
+                                    label: "Off"
+                                }],
+                                defaultValue: true
+                            }
+                        }
+                    },
+
                     BackgroundGroup: {
                         label: "Background",
                         type: "items",
@@ -696,6 +883,75 @@ define(['qlik','./js/util'], function (qlik, utils) {
                                 },
                                 show : function(data) {
                                     return data.backgroundcolorbool;
+                                }
+                            },
+                            //top background bar
+                            backgroundTopBarBool: {
+                                ref : "backgroundtopbarbool",
+                                type : "boolean",
+                                component : "switch",
+                                label : "Add top bar",
+                                options: [{
+                                    value: true,
+                                    label: "On"
+                                }, {
+                                    value: false,
+                                    label: "Off"
+                                }],
+                                defaultValue: false
+                            },
+                            
+                            backgroundTopBarColor: {
+                                ref: "backtopbarcolor",
+                                label: "Top bar color",
+                                type: "object",  
+                                component: "color-picker",  
+                                defaultValue: {
+                                    color: "#cccccc"  
+                                },
+                                show : function(data) {
+                                    return data.backgroundtopbarbool;
+                                }
+                            },
+                            backgroundTopBarHeight: {                                
+                                type: "number",
+                                component: "slider",
+                                label: "Top bar height",
+                                ref: "backtopbarheight",
+                                min: 5,
+                                max: 80,
+                                step: 1,
+                                defaultValue: 5,
+                                show : function(data) {
+                                    return data.backgroundtopbarbool;
+                                }
+                            },
+                            backgroundTopBarEffectsBool: {
+                                ref : "backgroundtopbareffectsbool",
+                                type : "boolean",
+                                component : "switch",
+                                label : "Visual effects",
+                                options: [{
+                                    value: true,
+                                    label: "On"
+                                }, {
+                                    value: false,
+                                    label: "Off"
+                                }],
+                                defaultValue: false,
+                                show : function(data) {
+                                    return data.backgroundtopbarbool;
+                                }
+                            },
+                            backgroundTopBarEffects: {
+                                type: "string",
+                                component: "dropdown",
+                                label: "Select visual effects",
+                                ref: "backgroundtopbareffects",
+                                options: vEffects,
+                                defaultValue: 'Nodes',
+                                show : function(data) {
+                                    return data.backgroundtopbarbool && data.backgroundtopbareffectsbool;
                                 }
                             },
                             // images
@@ -740,13 +996,14 @@ define(['qlik','./js/util'], function (qlik, utils) {
                                 show : function(data) {
                                     return data.backgroundimgbool;
                                 }
-                            },
+                            },//"backgroundimageurl",
                             backgroundImageUrl: {
-                                type: "string",
-                                ref: "backgroundimageurl",
-                                label: "Image url",
-                                defaultValue : '',
-                                expression : "optional",
+                                component: "expression",
+                                expressionType: "measure",
+                                schemaIgnore: !0,                                
+                                ref: "qHyperCubeDef.qDimensions.0.qAttributeExpressions.0.qExpression",
+                                label: "Value",
+                                defaultValue: "",
                                 show : function(data) {
                                     return data.backgroundimgbool && data.backgroundimgsrc == 'url';
                                 }
@@ -768,7 +1025,37 @@ define(['qlik','./js/util'], function (qlik, utils) {
                                 defaultValue : 'jpg',
                                 expression : "optional",
                                 show : function(data) {
+                                    return data.backgroundimgbool && data.backgroundimgsrc != 'url';
+                                }
+                            },
+                            backgroundImageSideBool: {
+                                ref : "backgroundimgsidebool",
+                                type : "boolean",
+                                component : "switch",
+                                label : "Parcel image out",
+                                options: [{
+                                    value: true,
+                                    label: "On"
+                                }, {
+                                    value: false,
+                                    label: "Off"
+                                }],
+                                defaultValue: false,
+                                show : function(data) {
                                     return data.backgroundimgbool;
+                                }
+                            },
+                            backgroundImgSideSize: {
+                                type: "number",
+                                component: "slider",
+                                label: "Parcel width",
+                                ref: "bgimgsidewidth",
+                                min: 10,
+                                max: 100,
+                                step: 5,
+                                defaultValue: 25,
+                                show : function(data) {
+                                    return data.backgroundimgbool && data.backgroundimgsidebool;
                                 }
                             },
                             backgroundImageSize: {
@@ -780,6 +1067,71 @@ define(['qlik','./js/util'], function (qlik, utils) {
                                 defaultValue: "cover",
                                 show : function(data) {
                                     return data.backgroundimgbool;
+                                }
+                            },
+                            backgroundImgLeft: {                                
+                                type: "number",
+                                component: "slider",
+                                label: "Left ref.",
+                                ref: "bgimgleft",
+                                min: 0,
+                                max: 80,
+                                step: 1,
+                                defaultValue: 0,
+                                show : function(data) {
+                                    return data.backgroundimgbool && data.backgroundimagesize == 'static';
+                                }
+                            },
+                            backgroundImgTop: {
+                                type: "number",
+                                component: "slider",
+                                label: "Top ref.",
+                                ref: "bgimgtop",
+                                min: 0,
+                                max: 80,
+                                step: 1,
+                                defaultValue: 0,
+                                show : function(data) {
+                                    return data.backgroundimgbool && data.backgroundimagesize == 'static';
+                                }
+                            },
+                            backgroundImgSize: {
+                                type: "number",
+                                component: "slider",
+                                label: "Img width",
+                                ref: "bgimgsize",
+                                min: 1,
+                                max: 20,
+                                step: 1,
+                                defaultValue: 5,
+                                show : function(data) {
+                                    return data.backgroundimgbool && data.backgroundimagesize == 'static';
+                                }
+                            },
+                            backgroundImgHeight: {
+                                type: "number",
+                                component: "slider",
+                                label: "Img height",
+                                ref: "bgimgheight",
+                                min: 1,
+                                max: 20,
+                                step: 1,
+                                defaultValue: 5,
+                                show : function(data) {
+                                    return data.backgroundimgbool && data.backgroundimagesize == 'static';
+                                }
+                            },
+                            backgroundImgRadius: {
+                                type: "number",
+                                component: "slider",
+                                label: "Border radius",
+                                ref: "bgimgradius",
+                                min: 0,
+                                max: 50,
+                                step: 1,
+                                defaultValue: 0,
+                                show : function(data) {
+                                    return data.backgroundimgbool && data.backgroundimagesize == 'static';
                                 }
                             },
                             backgroundImageAlign: {
@@ -817,7 +1169,7 @@ define(['qlik','./js/util'], function (qlik, utils) {
                                 max: 1,
                                 step: 0.05,
                                 defaultValue: 1                                
-                            },
+                            }/*,
                             borderRadius: {
                                 type: "number",
                                 component: "slider",
@@ -830,7 +1182,7 @@ define(['qlik','./js/util'], function (qlik, utils) {
                                 show : function(data) {
                                     return  data.backgroundimgbool;
                                 }                               
-                            }
+                            }*/
                         }
                     },    
                     //Hover effects
@@ -842,7 +1194,7 @@ define(['qlik','./js/util'], function (qlik, utils) {
                                 ref : "hoverimgbool",
                                 type : "boolean",
                                 component : "switch",
-                                label : "Remove background img",
+                                label : "Change background img",
                                 options: [{
                                     value: 0,
                                     label: "Off"
@@ -855,7 +1207,7 @@ define(['qlik','./js/util'], function (qlik, utils) {
                             hoverImgOpacity: {
                                 type: "number",
                                 component: "slider",
-                                label: "Opacity",
+                                label: "Img opacity",
                                 ref: "hoveropacity",
                                 min: 0,
                                 max: 1,
@@ -864,7 +1216,37 @@ define(['qlik','./js/util'], function (qlik, utils) {
                                 show : function(data) {
                                     return data.hoverimgbool == 1;
                                 }
-                            }                            
+                            },
+                            hoverConBool: {
+                                ref : "hoverconbool",
+                                type : "boolean",
+                                component : "switch",
+                                label : "Change labels container",
+                                options: [{
+                                    value: 0,
+                                    label: "Off"
+                                }, {
+                                    value: 1,
+                                    label: "On"
+                                }],
+                                defaultValue: 0
+                            },
+                            hoverContainerBool: {                                
+                                ref: "hovercontainerbool",
+                                type: "numeric",
+                                component: "buttongroup",
+                                options: [ {
+                                    value: 0,
+                                    label: "Hide on hover"
+                                }, {
+                                    value: 1,
+                                    label: "Show on hover"
+                                }],
+                                defaultValue: 0,
+                                show : function(data) {
+                                    return data.hoverconbool == 1;
+                                }
+                            },
                         }
                     },       
                     //Footer
@@ -936,7 +1318,7 @@ define(['qlik','./js/util'], function (qlik, utils) {
                                 show : function(data) {
                                     return data.behavior == 'var';
                                 }
-                            },
+                            }/*,
                             BehaviorVariableValue: {
                                 component: "expression",
                                 expressionType: "measure",
@@ -947,7 +1329,7 @@ define(['qlik','./js/util'], function (qlik, utils) {
                                 show : function(data) {
                                     return data.behavior == 'var';
                                 }
-                            }
+                            }*/
                         }
                     },  
                     //border settings
@@ -986,13 +1368,132 @@ define(['qlik','./js/util'], function (qlik, utils) {
                                 component: "slider",
                                 label: "Border width",
                                 ref: "borderwidth",
-                                min: 1,
-                                max: 5,
+                                min: 0,
+                                max: 50,
                                 step: 1,
                                 defaultValue: 1,
                                 show : function(data) {
                                     return  data.borderbool;
+                                }
+                            },
+                            borderRadius: {
+                                type: "number",
+                                component: "slider",
+                                label: "Border radius",
+                                ref: "borderradius",
+                                min: 0,
+                                max: 50,
+                                step: 2,
+                                defaultValue: 0,
+                                show : function(data) {
+                                    return  data.borderbool;
                                 }                               
+                            },
+                            //Shadow
+                            shadowBool: {
+                                ref : "shadowbool",
+                                type : "boolean",
+                                component : "switch",
+                                label : "Add a shadow",
+                                options: [{
+                                    value: true,
+                                    label: "On"
+                                }, {
+                                    value: false,
+                                    label: "Off"
+                                }],
+                                defaultValue: false
+                            },
+                            shadowColor: {
+                                ref: "shadowcolor",
+                                label: "Shadow color",
+                                type: "object",  
+                                component: "color-picker",  
+                                defaultValue: {  
+                                    color: "#888888"  
+                                },
+                                show : function(data) {
+                                    return  data.shadowbool;
+                                }
+                            },                            
+                            shadowWidth: {
+                                type: "number",
+                                component: "slider",
+                                label: "Shadow width",
+                                ref: "shadowwidth",
+                                min: 1,
+                                max: 10,
+                                step: 1,
+                                defaultValue: 4,
+                                show : function(data) {
+                                    return  data.shadowbool;
+                                }                               
+                            },
+                            borderImageBool: {
+                                ref : "borderimagebool",
+                                type : "boolean",
+                                component : "switch",
+                                label : "Set an image",
+                                options: [{
+                                    value: true,
+                                    label: "On"
+                                }, {
+                                    value: false,
+                                    label: "Off"
+                                }],
+                                defaultValue: false,
+                                show : function(data) {
+                                    return  data.borderbool;
+                                }
+                            },
+                            borderImageSource: {
+                                type: "string",
+                                ref: "borderimgsrc",
+                                component: "radiobuttons",
+                                label: "Image source",
+                                options: [
+                                  {
+                                    value: "url",
+                                    label: "Image from Url"
+                                  },
+                                  {
+                                    value: "lib",
+                                    label: "Image from library"
+                                  },
+                                  {
+                                    value: "app",
+                                    label: "Image from app"
+                                  },
+                                  {
+                                    value: "ext",
+                                    label: "SmartCards img folder"
+                                  }
+                                ],
+                                defaultValue: "app",
+                                show : function(data) {
+                                    return data.borderimagebool && data.borderbool;
+                                }
+                            },
+                            borderImageSubfolder: {
+                                type: "string",
+                                ref: "borderimagesub",
+                                label: "Type a subfolder if needed",
+                                defaultValue : '',
+                                expression : "optional",
+                                show : function(data) {
+                                    return data.borderimagebool && data.borderbool && data.borderimgsrc == 'ext';
+                                }
+                            },                            
+                            borderImageSize: {
+                                ref: "borderimagesize",
+                                type: "string",
+                                component: "dropdown",
+                                label: "Size",
+                                options: vImgSize,
+                                defaultValue: "cover",
+                                show : function(data) {
+                                    return data.borderimagebool && data.borderbool;
+                                }
                             }                            
                         }
                     },
@@ -1027,7 +1528,7 @@ define(['qlik','./js/util'], function (qlik, utils) {
                                 component: "text"
                             },
                             paragraph3: {
-                                label: "Last update 18-jan-2022.",
+                                label: "Last update 11-Jan-2024.",
                                 component: "text"
                             }
                         }
